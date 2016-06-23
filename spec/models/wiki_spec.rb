@@ -1,11 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Wiki, type: :model do
-  let(:post) { Wiki.create!(title: "New Wiki Title", body: "New Wiki Body") }
+  let(:wiki) { create :wiki }
   
   describe "attributes" do
     it "has title and body attributes" do
-      expect(post).to have_attributes(title: "New Wiki Title", body: "New Wiki Body")
+      expect(wiki).to have_attributes(title: "Wiki Title", body: "Wiki Body")
     end
   end
 end
