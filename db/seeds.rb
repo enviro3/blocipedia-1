@@ -9,26 +9,26 @@ require 'random_data'
   )
 end
 
-# Create admin user
-unless User.find_by(email: 'admin@example.com')
-  User.create!(
-    #name: 'Admin User',
-    email: 'admin@example.com',
-    password: 'helloworld',
-    #role: 'admin'
-  )
-end
+# # Create admin user
+# unless User.find_by(email: 'admin@example.com')
+#   User.create!(
+#     #name: 'Admin User',
+#     email: 'admin@example.com',
+#     password: 'helloworld',
+#     #role: 'admin'
+#   )
+# end
 
-unless User.find_by(email: 'member@example.com')
-  User.create!(
-    #name: 'Member User',
-    email: 'member@example.com',
-    password: 'helloworld'
-  )
-end
-users = User.all
+# unless User.find_by(email: 'member@example.com')
+#   User.create!(
+#     #name: 'Member User',
+#     email: 'member@example.com',
+#     password: 'helloworld'
+#   )
+# end
+# users = User.all
 
-puts "#{User.count} users created"
+# puts "#{User.count} users created"
 
 # Create Wikis
 10.times do
@@ -39,8 +39,39 @@ puts "#{User.count} users created"
   )
 end
 
-wikis = Wiki.all
+  wikis = Wiki.all
 
 puts "#{Wiki.count} posts created"
+
+# Create an admin user
+admin = User.new(
+  #name: 'Admin User',
+  email: 'admin@example.com',
+  password: 'helloworld',
+  role: 'admin'
+)
+admin.skip_confirmation!
+admin.save!
+
+# Create a premium user
+premium = User.new(
+  #name:      'Premium User',
+  email:     'premium@example.com',
+  password:  'helloworld',
+  role:      'premium'
+)
+premium.skip_confirmation!
+premium.save!
+
+# Create member user
+member = User.new(
+  #name:     'Member User',
+  email:    'member@example.com',
+  password: 'helloworld',
+)
+member.skip_confirmation!
+member.save!
+
+puts "#{User.count} users created."
 
 puts "Seed finished"

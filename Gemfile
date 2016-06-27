@@ -23,6 +23,7 @@ gem 'bootstrap-sass'
 gem 'figaro'
 gem 'pry'
 gem 'devise'
+gem 'pundit'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0'
