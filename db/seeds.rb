@@ -3,7 +3,7 @@ require 'random_data'
 # Create Users
 5.times do
   User.create!(
-    #name: RandomData.random_name,
+    name: RandomData.random_name,
     email: RandomData.random_email,
     password: RandomData.random_sentence
   )
@@ -45,7 +45,7 @@ puts "#{Wiki.count} posts created"
 
 # Create an admin user
 admin = User.new(
-  #name: 'Admin User',
+  name: 'Admin User',
   email: 'admin@example.com',
   password: 'helloworld',
   role: 'admin'
@@ -55,7 +55,7 @@ admin.save!
 
 # Create a premium user
 premium = User.new(
-  #name:      'Premium User',
+  name:      'Premium User',
   email:     'premium@example.com',
   password:  'helloworld',
   role:      'premium'
@@ -65,7 +65,7 @@ premium.save!
 
 # Create member user
 member = User.new(
-  #name:     'Member User',
+  name:     'Member User',
   email:    'member@example.com',
   password: 'helloworld',
 )
