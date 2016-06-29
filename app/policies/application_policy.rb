@@ -6,20 +6,8 @@ class ApplicationPolicy
     @wiki = wiki
   end
 
-  def index?
-    false
-  end
-
   def show?
     scope.where(:id => wiki.id).exists?
-  end
-
-  def create?
-    false
-  end
-
-  def new?
-    create?
   end
 
   def update?
@@ -28,10 +16,6 @@ class ApplicationPolicy
 
   def edit?
     update?
-  end
-
-  def destroy?
-    false
   end
 
   def scope

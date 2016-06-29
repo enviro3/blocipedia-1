@@ -1,11 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe Wiki, type: :model do
-  let(:wiki) { create :wiki }
+  
+  let(:post) { create(:wiki) }
+  let(:user) { create(:user) }
   
   describe "attributes" do
-    it "has title and body attributes" do
-      expect(wiki).to have_attributes(title: "Wiki Title", body: "Wiki Body")
-    end
+    it { should have_db_column(:title).of_type(:string) }
+    it { should have_db_column(:body).of_type(:text) }
   end
 end
