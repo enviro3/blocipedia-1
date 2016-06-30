@@ -32,7 +32,6 @@ group :development, :test do
   gem 'byebug'
   gem 'spring'
   gem 'shoulda'
-  gem 'faker'
   gem 'pry-rails'
   gem 'pry-byebug'
   gem 'better_errors'
