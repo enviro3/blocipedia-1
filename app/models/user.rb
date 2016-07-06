@@ -1,10 +1,13 @@
 class User < ActiveRecord::Base
   has_many :wikis
-  enum role: [:standard, :premium, :admin]
-  after_initialize :set_default_role
+  has_many :collaborators
+  has_many :wikis, through: :collaborators
   
-  #has_many :collaborations
-  #has_many :wikis, through: :collaborations
+  enum role: [:standard, :premium, :admin]
+  
+
+  before_save { self.email = email.downcase }
+  after_initialize { self.role ||= :standard }
   
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -29,9 +32,10 @@ class User < ActiveRecord::Base
   #  self.save
   #end
   
-  private
+  # private
   
-  def set_default_role
-    self.role ||= :standard
-  end
+  # def set_default_role
+  #   self.role ||= :standard
+  # end
+  
 end

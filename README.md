@@ -1,29 +1,47 @@
-<<<<<<< HEAD
+# Blocipedia
 
-     ,-----.,--.                  ,--. ,---.   ,--.,------.  ,------.
-    '  .--./|  | ,---. ,--.,--. ,-|  || o   \  |  ||  .-.  \ |  .---'
-    |  |    |  || .-. ||  ||  |' .-. |`..'  |  |  ||  |  \  :|  `--, 
-    '  '--'\|  |' '-' ''  ''  '\ `-' | .'  /   |  ||  '--'  /|  `---.
-     `-----'`--' `---'  `----'  `---'  `--'    `--'`-------' `------'
-    ----------------------------------------------------------------- 
+Blocipedia is a Ruby on Rails application that allows users to create wikis and collaborate on other wikis. Users can pay to upgrade their membership, allowing them to view and create private wikis.
 
+The app is deployed on Heroku: https://bwieber-blocipedia.herokuapp.com
 
-Welcome to your Rails project on Cloud9 IDE!
+The source code is here on GitHub: https://github.com/BWieber/Blocipedia
 
-To get started, just do the following:
+This app was created as part of the [Bloc](www.bloc.io) Full Stack Web Development course.
 
-1. Run the project with the "Run Project" button in the menu bar on top of the IDE.
-2. Preview your new app by clicking on the URL that appears in the Run panel below (https://blocipedia-tadeosss.c9users.io/).
+# Features
 
-Happy coding!
-The Cloud9 IDE team
++ Users can create a standard account in order to create, edit, and collaborate on public wikis using Markdown syntax. Anyone can view public wikis.
++ Users can pay to upgrade their account to Premium in order to view and create private wikis.
++ Premium users can allow others to view and collaborate on the private wikis they create.
++ Premium users can downgrade their account back to Standard.
++ When a user downgrades his or her account, his or her private wikis will automatically become public.
 
+# Setup and Configuration
 
-## Support & Documentation
+**Languages and Frameworks**: Ruby on Rails and Bootstrap
 
-Visit http://docs.c9.io for support, or to learn more about using Cloud9 IDE. 
-To watch some training videos, visit http://www.youtube.com/user/c9ide
-=======
-# blocipedia
-SaaS app that allows users to create their own wikis.
->>>>>>> 49cb02e09aeed49a1e47999408ea28c9cffa3dcc
+**Ruby version 2.3.0**
+
+**Databases**: SQLite (Test, Development), PostgreSQL (Production)
+
+**Development Tools and Gems include**:
+
++ Devise for user authentication
++ SendGrid for email confirmation
++ Redcarpet for Markdown formatting
++ Pundit for authorization
++ Stripe for payments
+
+**Setup:**
+
++ Environment variables were set using Figaro and are stored in config/application.yml (ignored by git).
+
++ The config/application.example.yml file illustrates how environment variables should be stored.
+
+**To run Blocipedia locally:**
+
++ Clone the repository
++ Run bundle install
++ Create and migrate the SQLite database with `rake db:create` and `rake db:migrate`
++ Start the server using `rails server`
++ Run the app on `localhost:3000`

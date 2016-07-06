@@ -25,6 +25,7 @@ gem 'pry'
 gem 'devise'
 gem 'pundit'
 gem 'faker'
+gem 'stripe'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0'
@@ -32,7 +33,6 @@ group :development, :test do
   gem 'byebug'
   gem 'spring'
   gem 'shoulda'
-  gem 'faker'
   gem 'pry-rails'
   gem 'pry-byebug'
   gem 'better_errors'
