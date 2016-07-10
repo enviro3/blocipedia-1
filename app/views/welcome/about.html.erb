@@ -1,2 +1,50 @@
-<h1>Welcome#about</h1>
-<p>Find me in app/views/welcome/about.html.erb</p>
+<h1>Blocipedia</h1>
+
+<p>Blocipedia is a Ruby on Rails application that allows users to create wikis and collaborate on other wikis. Users can pay to upgrade their membership, allowing them to view and create private wikis.</p>
+
+<p>The app is deployed on Heroku: <a href="https://tadeosss-blocipedia.herokuapp.com" target="_blank">https://tadeosss-blocipedia.herokuapp.com</a></p>
+
+<p>The source code is here on GitHub: <a href="https://github.com/tadeosss/blocipedia" target="_blank">https://github.com/tadeosss/blocipedia</a></p>
+
+<p>This app was created as part of the <a href="https://www.bloc.io/web-developer-career-track" target="_blank">Bloc Full Stack Web Development course.</a></p>
+
+<h1>Features</h1>
+<ul>
+<li>Users can create a standard account in order to create, edit, and collaborate on public wikis using Markdown syntax. Anyone can view public wikis.</li>
+<li>Users can pay to upgrade their account to Premium in order to view and create private wikis.</li>
+<li>Premium users can allow others to view and collaborate on the private wikis they create.</li>
+<li>Premium users can downgrade their account back to Standard.</li>
+<li>When a user downgrades his or her account, his or her private wikis will automatically become public.</li>
+</ul>
+
+<h1>Setup and Configuration</h1>
+
+<p><strong>Languages and Frameworks:</strong> Ruby on Rails and Bootstrap</p>
+
+<p><strong>Ruby version:</strong> 2.3.0</p>
+
+<p><strong>Databases:</strong> SQLite (Test, Development), PostgreSQL (Production)</p>
+
+<p><strong>Development Tools and Gems include:</strong></p>
+<ul>
+<li>Devise for user authentication
+<li>SendGrid for email confirmation
+<li>Redcarpet for Markdown formatting
+<li>Pundit for authorization
+<li>Stripe for payments
+</ul>
+
+<p><strong>Setup:</strong></p>
+<ul>
+<li>Environment variables were set using Figaro and are stored in config/application.yml (ignored by git).
+<li>he config/application.example.yml file illustrates how environment variables should be stored.
+</ul>
+
+<p><strong>To run Blocipedia locally:</strong></p>
+<ul>
+<li>Clone the repository
+<li>Run bundle install
+<li>Create and migrate the SQLite database with rake db:create and rake db:migrate
+<li>Start the server using rails server
+<li>Run the app on localhost:3000
+</ul>
