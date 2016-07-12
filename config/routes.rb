@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   
   resources :charges, only: [:new, :create]
   
-  resources :users do
+  resources :users, only: [:index, :show] do
     member do
       post :downgrade
     end
