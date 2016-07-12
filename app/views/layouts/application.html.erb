@@ -19,16 +19,23 @@
       
       <div class="user-info pull-right">
       <% if user_signed_in? %>
-        Signed in as: <strong> <%= current_user.name %> </strong> <br />
+        <!--Signed in as: <strong> <%= current_user.name %> </strong> <br />-->
+        <!--  <%= link_to "Edit profile", edit_user_registration_path, :class => "navbar-link" %> --->
+        <!--  <%= link_to "Sign Out", destroy_user_session_path, method: :delete, :class => "navbar-link" %>-->
+          
+          <%= image_tag current_user.avatar_url(48), class: "gravatar" %> 
+          <div class="pull-right">
+          Hello, <strong><%= link_to current_user.name, user_path(current_user), :class => "navbar-link" %></strong> | 
           <%= link_to "Edit profile", edit_user_registration_path, :class => "navbar-link" %> -
           <%= link_to "Sign Out", destroy_user_session_path, method: :delete, :class => "navbar-link" %>
-          
+            <p>
             <% if current_user.role == "standard" || current_user.role == "admin" %>
-              - <%= link_to "Upgrade to Premium", new_charge_path %>
+              <%= link_to "Upgrade to Premium", new_charge_path %>
             <% else %>
-              - <%= link_to "Downgrade to Standard", edit_user_registration_path %>
+              <%= link_to "Downgrade to Standard", edit_user_registration_path %>
             <% end %>
-        
+            </p>
+          </div>
         <% else %>
           <%= link_to "Sign Up", new_user_registration_path, :class => "navbar-link"  %> - 
         <%= link_to "Sign In", new_user_session_path, :class => "navbar-link"  %>
