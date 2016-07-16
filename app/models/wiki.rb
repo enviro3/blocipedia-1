@@ -3,4 +3,6 @@ class Wiki < ActiveRecord::Base
   validates :user, presence: true
   
   scope :visible_to, -> (user) { user ? all : where(public: true) }
+  
+  default_scope { order('created_at DESC') }
 end

@@ -1,2 +1,27 @@
-<h1>Blocipedia</h1>
-<p id="index-title">This is the home page for Blocipedia.</p>
+<br>
+<div class="jumbotron">
+  <h1>Blocipedia</h1>
+  <p>Blocipedia allows you to create wikis and collaborate with others!</p>
+  <p>
+    <%= link_to "Sign In", new_user_session_path %> or
+    <%= link_to "Sign Up", new_user_registration_path, class: 'btn btn-primary' %> today!
+  </p>
+</div>
+
+<div class="row">
+  <div class="col-md-4">
+    <h3>CREATE</h3>
+    <p>Users can create a standard account in order to create, edit, and collaborate on public wikis using Markdown syntax. Anyone can view public wikis.
+</p>
+  </div>
+  <div class="col-md-4">
+    <h3>PREMIUM</h3>
+    <p>Users can pay to upgrade their account to Premium in order to view and create private wikis.<br />
+Premium users can allow others to view and collaborate on the private wikis they create.</p>
+  </div>
+  <div class="col-md-4">
+    <h3>STANDARD</h3>
+    <p>Premium users can downgrade their account back to Standard.<br />
+When a user downgrades his or her account, his or her private wikis will automatically become public.</p>
+  </div>
+</div>

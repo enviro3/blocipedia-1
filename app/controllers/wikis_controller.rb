@@ -5,16 +5,16 @@ class WikisController < ApplicationController
     @wikis = Wiki.all
     authorize @wikis
     @wikis = Wiki.visible_to(current_user)
+    
+    if current_user.premium? || current_user.admin?
+      @wikis = Wiki.all
+    end
+    
   end
 
   def show
     @wiki = Wiki.find(params[:id])
     authorize @wiki
-    
-    unless @wiki.public || authorize_user
-      flash[:alert] = "You must be signed in to view private wikis."
-      redirect_to new_session_path
-    end
   end
 
   def new
@@ -30,12 +30,13 @@ class WikisController < ApplicationController
     authorize @wiki
     @wiki.title = params[:wiki][:title]
     @wiki.body = params[:wiki][:body]
+    @wiki.private = params[:wiki][:private]
     
     if @wiki.save
-      flash[:notice] = "Post was saved successfully."
+      flash[:notice] = "Wiki was saved successfully."
       redirect_to @wiki
     else
-      flash.now[:alert] = "There was an error saving the post. Please try again."
+      flash.now[:alert] = "There was an error saving the wiki. Please try again."
       render :new
     end
      
@@ -55,12 +56,13 @@ class WikisController < ApplicationController
     authorize @wiki
     @wiki.title = params[:wiki][:title]
     @wiki.body = params[:wiki][:body]
+    @wiki.private = params[:wiki][:private]
 
     if @wiki.save
       flash[:notice] = "Wiki was updated successfully."
       redirect_to @wiki
     else
-      flash.now[:alert] = "There was an error saving the post. Please try again."
+      flash.now[:alert] = "There was an error saving the wiki. Please try again."
       render :edit
     end
   end
@@ -68,7 +70,6 @@ class WikisController < ApplicationController
   def destroy
     @wiki = Wiki.find(params[:id])
     authorize @wiki
-  #   title = @wiki.title
 
     if @wiki.destroy
       flash[:notice] = "\"#{@wiki.title}\" was deleted successfully."

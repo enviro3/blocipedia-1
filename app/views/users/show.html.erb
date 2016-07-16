@@ -2,7 +2,6 @@
   <div class="col-md-8">
     <div class="media">
       <br />
-
       <% avatar_url = @user.avatar_url(128) %>
       <% if avatar_url %>
         <div class="media-left">
@@ -10,14 +9,13 @@
         </div>
       <% end %>
       <div class="media-body">
-        <h2 class="media-heading"><%= @user.name %></h2> (<%= @user.role %>)
-        <small>
-          <%= pluralize(@user.wikis.count, 'wiki') %>,
-        </small>
+        <h3 class="media-heading"><%= @user.name %></h3>
+        <p>Account Type: <%= @user.role %></p>
+        <p>Contributions: <%= pluralize(@user.wikis.count, 'wiki') %></p>
       </div>
     </div>
   </div>
 </div>
-
-<h2>Wikis</h2>
-  <!--<%= render @user.wikis %>-->
+<hr />
+<h3>WIKIS</h3>
+  <%= render @user.wikis %>
