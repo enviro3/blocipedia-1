@@ -10,8 +10,7 @@ group :production do
 end
 
 group :development do
-  gem 'sqlite3'
-  gem 'web-console', '~> 2.0'
+  gem 'spring'
 end
 
 gem 'sass-rails', '~> 5.0'
@@ -21,18 +20,15 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'bootstrap-sass'
 gem 'figaro'
-gem 'pry'
 gem 'devise'
 gem 'pundit'
-gem 'faker'
 gem 'stripe'
 
 group :development, :test do
-  gem 'rspec-rails', '~> 3.0'
-  gem 'shoulda-matchers'
-  gem 'byebug'
-  gem 'spring'
-  gem 'shoulda'
+  gem 'faker'
+  gem 'sqlite3'
+  gem 'rspec-rails', '~> 3.4'
+  gem 'shoulda-matchers', '~> 3.1'
   gem 'pry-rails'
   gem 'pry-byebug'
   gem 'better_errors'
