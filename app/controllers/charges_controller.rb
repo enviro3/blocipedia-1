@@ -1,7 +1,9 @@
+require 'stripe'
 class ChargesController < ApplicationController
 
   def create
     @user = current_user
+    @amount = 15_00
     
     # Creates a Stripe Customer object, for associating with the charge
     customer = Stripe::Customer.create(
@@ -9,10 +11,9 @@ class ChargesController < ApplicationController
       card: params[:stripeToken]
     )
   
-    # Where the real magic happens
     charge = Stripe::Charge.create(
       customer: customer.id, # Note -- this is NOT the user_id in your app
-      amount: 15_00,
+      amount: @amount,
       description: "Upgrade to Premium Membership - #{current_user.email}",
       currency: 'usd'
     )
@@ -35,6 +36,18 @@ class ChargesController < ApplicationController
       description: "Premium Membership - #{current_user.name}",
       amount: 15_00
     }
+  end
+  
+  def cancel
+    subscription = Stripe::Subscription.retrieve("sub_8Xw6Ak8Gc4EvJx")
+    subscription.delete(at_period_end: true)
+    
+    current_user.update_attribute(:role, 'standard')
+    current_user.wikis.where(private: true).update_all(private: false)
+    
+    
+    flash[:notice] = "You are now a Standard Member."
+    redirect_to wikis_path
   end
 
   private

@@ -14,7 +14,12 @@ class WikisController < ApplicationController
 
   def show
     @wiki = Wiki.find(params[:id])
-    authorize @wiki
+    # authorize @wiki
+    
+    if @wiki.private && current_user.standard?
+      flash[:alert] = "You must be a priemium user to view this Wiki."
+      redirect_to root_path
+    end
   end
 
   def new

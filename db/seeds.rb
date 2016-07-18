@@ -52,11 +52,12 @@ users.each do |user|
     user.wikis.create!(
       title:    Faker::Lorem.word,
       body:     Faker::Lorem.paragraph,
-      private:  false
+      private:  rand(1..5) !=1
     )
   end
 end
 
-puts "#{Wiki.count} posts created"
+puts "#{Wiki.count} wikis created"
+puts "#{Wiki.where(private: true).count} private wikis created."
 
 puts "Seed finished"
