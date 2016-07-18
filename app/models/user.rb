@@ -26,7 +26,8 @@ class User < ActiveRecord::Base
     length: { minimum: 3, maximum: 254},
     format: { with: VALID_EMAIL_REGEX }
   
-  # Call back
+  # Callbacks
+  
   before_save { self.email = email.downcase if self.email.present? }
 
   
