@@ -2,19 +2,13 @@ class WikisController < ApplicationController
   before_action :authenticate_user!
   
   def index
-    @wikis = Wiki.all
+    @wikis = policy_scope(Wiki)
     authorize @wikis
-    @wikis = Wiki.visible_to(current_user)
-    
-    if current_user.premium? || current_user.admin?
-      @wikis = Wiki.all
-    end
-    
   end
 
   def show
     @wiki = Wiki.find(params[:id])
-    # authorize @wiki
+    authorize @wiki
     
     if @wiki.private && current_user.standard?
       flash[:alert] = "You must be a priemium user to view this Wiki."

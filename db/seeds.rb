@@ -4,6 +4,7 @@ def create_static_user(attributes)
   unless User.find_by(email: attributes[:email])
     static_user = User.create!(attributes)
     static_user.skip_confirmation!
+    static_user.save!
     puts "created static #{attributes[:name]}."
     puts "Email: #{attributes[:email]} Password: #{attributes[:password]}"
   else
