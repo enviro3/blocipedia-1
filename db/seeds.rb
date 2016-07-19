@@ -64,5 +64,4 @@ end
 
 puts "#{Wiki.count} wikis created"
 
-
 puts "Seed finished"
