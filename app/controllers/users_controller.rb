@@ -2,9 +2,8 @@ class UsersController < ApplicationController
 
   def downgrade
     @user = User.find(params[:id])
-    @user.role = 'standard'
   
-    if @user.save
+    if @user.downgrade!
       flash[:notice] = "You've been downgraded to standard. Your private wikis are now public."
       redirect_to :back
     else

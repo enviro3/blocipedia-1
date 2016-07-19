@@ -21,7 +21,7 @@ class WikiPolicy < ApplicationPolicy
   end
 
   def show?
-    user.present? && (user.admin? || wiki.user_id == user.id)
+    user.present? && (!wiki.private || user.admin? || wiki.user_id == user.id)
   end
 
   def edit?

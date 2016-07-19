@@ -37,6 +37,15 @@ class User < ActiveRecord::Base
   #  self.save
   #end
   
+  def downgrade!
+    ActiveRecord::Base.transaction do
+      self.update_attribute(:role, :standard)
+      self.wikis.where(private: true).all.each do |wiki|
+        wiki.update_attribute(:private, false)
+      end
+    end
+  end
+  
   # private
   
   # def set_default_role
