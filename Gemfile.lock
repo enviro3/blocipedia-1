@@ -173,12 +173,8 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (>= 1.1, < 3)
-    shoulda (3.5.0)
-      shoulda-context (~> 1.0, >= 1.0.1)
-      shoulda-matchers (>= 1.4.1, < 3.0)
-    shoulda-context (1.2.1)
-    shoulda-matchers (2.8.0)
-      activesupport (>= 3.0.0)
+    shoulda-matchers (3.1.1)
+      activesupport (>= 4.0.0)
     slop (3.6.0)
     spring (1.7.1)
     sprockets (3.6.0)
@@ -202,11 +198,6 @@ GEM
       execjs (>= 0.3.0, < 3)
     warden (1.2.6)
       rack (>= 1.0)
-    web-console (2.3.0)
-      activemodel (>= 4.0)
-      binding_of_caller (>= 0.7.2)
-      railties (>= 4.0)
-      sprockets-rails (>= 2.0, < 4.0)
 
 PLATFORMS
   ruby
@@ -215,7 +206,6 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   bootstrap-sass
-  byebug
   coffee-rails (~> 4.1.0)
   devise
   factory_girl_rails (~> 4.0)
@@ -223,22 +213,19 @@ DEPENDENCIES
   figaro
   jquery-rails
   pg
-  pry
   pry-byebug
   pry-rails
   pundit
   rails (= 4.2.5)
   rails_12factor
-  rspec-rails (~> 3.0)
+  rspec-rails (~> 3.4)
   sass-rails (~> 5.0)
-  shoulda
-  shoulda-matchers
+  shoulda-matchers (~> 3.1)
   spring
   sqlite3
   stripe
   turbolinks
   uglifier (>= 1.3.0)
-  web-console (~> 2.0)
 
 RUBY VERSION
    ruby 2.3.0p0

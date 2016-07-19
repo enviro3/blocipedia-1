@@ -1,6 +1,15 @@
 require 'faker'
 
-User.destroy_all
+def create_static_user(attributes)
+  unless User.find_by(email: attributes[:email])
+    static_user = User.create!(attributes)
+    static_user.skip_confirmation!
+    puts "created static #{attributes[:name]}."
+    puts "Email: #{attributes[:email]} Password: #{attributes[:password]}"
+  else
+    puts "Skipped creation of \"#{attributes[:email]}\""
+  end
+end
 
 # Create Users
 10.times do
@@ -12,35 +21,31 @@ User.destroy_all
   user.skip_confirmation!
   user.save!
 end
+puts "Random Users created."
 
 # Create an admin user
-admin = User.new(
+create_static_user({
   name:       'Admin User',
   email:      'admin@example.com',
   password:   'helloworld',
   role:       'admin'
-  )
-admin.skip_confirmation!
-admin.save!
+})
+
 
 # Create a premium user
-premium = User.new(
+create_static_user({
   name:       'Premium User',
   email:      'premium@example.com',
   password:   'helloworld',
   role:       'premium'
-  )
-premium.skip_confirmation!
-premium.save!
+})
 
 # Create member user
-member = User.new(
+create_static_user({
   name:       'Member User',
   email:      'member@example.com',
   password:   'helloworld',
-  )
-member.skip_confirmation!
-member.save!
+})
 
 users = User.all
 
@@ -58,6 +63,6 @@ users.each do |user|
 end
 
 puts "#{Wiki.count} wikis created"
-puts "#{Wiki.where(private: true).count} private wikis created."
+
 
 puts "Seed finished"
