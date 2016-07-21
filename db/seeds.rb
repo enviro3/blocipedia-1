@@ -44,7 +44,7 @@ create_static_user({
 create_static_user({
   name:       'Member User',
   email:      'member@example.com',
-  password:   'helloworld',
+  password:   'helloworld'
 })
 
 users = User.all
