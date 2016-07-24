@@ -9,8 +9,8 @@ class User < ActiveRecord::Base
   # Associations
   
   has_many :wikis, dependent: :destroy
-  #has_many :collaborators
-  #has_many :wikis, through: :collaborators
+  has_many :collaborators, dependent: :destroy
+  has_many :wikis, through: :collaborators
   
   # Validations
   

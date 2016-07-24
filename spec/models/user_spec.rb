@@ -16,6 +16,7 @@ RSpec.describe User, type: :model do
   
   describe "associations" do
     it { should have_many(:wikis).dependent(:destroy) }
+    it { should have_many(:collaborators) }
   end
   
   describe "validations" do
