@@ -1,7 +1,7 @@
 class WikiPolicy < ApplicationPolicy
 
   def index?
-    user.admin? || user.wikis.count
+    user.present?
   end
 
   def update?
@@ -21,7 +21,7 @@ class WikiPolicy < ApplicationPolicy
   end
 
   def show?
-    user.present? && (!wiki.private || user.admin? || wiki.user_id == user.id)
+    user.present? && (!wiki.private || user.admin? || wiki.user_id == user.id || user.collaborator?(wiki))
   end
 
   def edit?
@@ -37,32 +37,13 @@ class WikiPolicy < ApplicationPolicy
   end
   
     def resolve
-      # if user.admin? || user.premium?
-      #   return scope.all
-      # else
-      #   return scope.where(private: false)
-      # end
-      
-      wikis = []
-      if user.role == 'admin'
-        wikis = scope.all # if the user is an admin, show them all the wikis
-      elsif user.role == 'premium'
-        all_wikis = scope.all
-        all_wikis.each do |wiki|
-          if !wiki.private? || wiki.user == user || wiki.collaborators.include?(user)
-            wikis << wiki # if the user is premium, only show them public wikis, or that private wikis they created, or private wikis they are a collaborator on
-          end
-        end
-      else # this is the lowly standard user
-        all_wikis = scope.all
-        wikis = []
-        all_wikis.each do |wiki|
-          if wiki.private? || wiki.collaborators.include?(user)
-            wikis << wiki # only show standard users public wikis and private wikis they are a collaborator on
-          end
-        end
+      if @user.admin? || @user.premium?
+        return @scope.all
+      elsif @user.standard?
+        return @scope.joins(:collaborators).where(collaborators: {user_id: @user.id}) + @scope.where(private: false)
+      else
+        return @scope.none
       end
-      wikis # return the wikis array we've built up
     end
   end
 

@@ -1,21 +1,14 @@
-include ApplicationHelper
-
 class WikisController < ApplicationController
   before_action :authenticate_user!
   
   def index
+    authorize(Wiki)
     @wikis = policy_scope(Wiki)
-    # authorize @wikis
   end
 
   def show
     @wiki = Wiki.find(params[:id])
-    # authorize @wiki
-    
-    if @wiki.private && current_user.standard?
-      flash[:alert] = "You must be a priemium user to view this Wiki."
-      redirect_to wikis_path
-    end
+    authorize @wiki
   end
 
   def new
@@ -87,13 +80,4 @@ class WikisController < ApplicationController
     params.require(:wiki).permit(:title, :body, :private, :user)
   end
   
-  def authorize_user
-    @user = User.find(params[:id])
-    authorize @user
-    unless current_user?
-      flash[:alert] = "You must be a user to do that."
-      redirect_to wikis_path
-    end
-  end
-
 end
