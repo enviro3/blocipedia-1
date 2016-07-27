@@ -25,7 +25,7 @@ class WikiPolicy < ApplicationPolicy
   end
 
   def edit?
-    user.present?
+    user.present? && ( user.admin? || wiki.user_id == user.id || user.collaborator?(wiki))
   end
 
   class Scope

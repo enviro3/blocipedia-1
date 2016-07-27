@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   devise_for :users
   
   resources :wikis do
-    resources :collaborators, only: [:new, :create, :destroy]
+    resources :collaborators, only: [:new, :create, :update, :destroy]
   end
   
   resources :charges, only: [:new, :create]

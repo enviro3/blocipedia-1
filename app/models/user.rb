@@ -37,13 +37,6 @@ class User < ActiveRecord::Base
     self.collaborators.where(wiki: wiki).present?
   end
 
-  
-  #def downgrade
-  #  self.role = :standard
-  #    Wiki.where(user_id: id, private: true).destroy_all
-  #  self.save
-  #end
-  
   def downgrade!
     ActiveRecord::Base.transaction do
       self.update_attribute(:role, :standard)
@@ -52,12 +45,6 @@ class User < ActiveRecord::Base
       end
     end
   end
-  
-  # private
-  
-  # def set_default_role
-  #   self.role ||= :standard
-  # end
   
   def avatar_url(size)
     gravatar_id = Digest::MD5::hexdigest(self.email).downcase

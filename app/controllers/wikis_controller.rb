@@ -33,11 +33,6 @@ class WikisController < ApplicationController
       flash.now[:alert] = "There was an error saving the wiki. Please try again."
       render :new
     end
-     
-    # @wiki = current_user.wikis.create(wiki_params)
-    # authorize @wiki
-    # # adding owner to collaborator list
-    # # collaborator = @wiki.collaborators.build(user_id: current_user.id)
   end
 
   def edit
@@ -47,16 +42,13 @@ class WikisController < ApplicationController
 
   def update
     @wiki = Wiki.find(params[:id])
-    authorize @wiki
-    @wiki.title = params[:wiki][:title]
-    @wiki.body = params[:wiki][:body]
-    @wiki.private = params[:wiki][:private]
+    @wiki.assign_attributes(wiki_params)
 
     if @wiki.save
-      flash[:notice] = "Wiki was updated successfully."
+      flash[:notice] = "You wiki has been updated."
       redirect_to @wiki
     else
-      flash.now[:alert] = "There was an error saving the wiki. Please try again."
+      flash.now[:alert] = "There was an Error editing your Wiki."
       render :edit
     end
   end
@@ -77,7 +69,6 @@ class WikisController < ApplicationController
   private
   
   def wiki_params
-    params.require(:wiki).permit(:title, :body, :private, :user)
+    params.require(:wiki).permit(:title, :body, :private, :user_id, :user_ids => [])
   end
-  
 end
